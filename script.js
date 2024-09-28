@@ -1,13 +1,13 @@
-const startButton = document.querySelector(".take-quiz")
-const content = document.querySelector(".main-content")
-const quizScreen = document.querySelector(".quiz-screen")
-const heading = document.querySelector(".heading")
+const startButton = document.querySelector(".take-quiz");
+const content = document.querySelector(".main-content");
+const quizScreen = document.querySelector(".quiz-screen");
+const heading = document.querySelector(".heading");
 let questionNumber = 0;
 let score = 0;
 
 
 
-startButton.addEventListener("click",() => startQuiz())
+startButton.addEventListener("click",() => startQuiz());
 
 function startQuiz(){
     startButton.disabled = true;
@@ -22,7 +22,7 @@ function startQuiz(){
     const questionBox = document.createElement("div");
     questionBox.classList.add("question-box");
     
-    appendQuestion(questionBox, answerBox)
+    appendQuestion(questionBox, answerBox);
 
     const submitButton = document.createElement("button");
     submitButton.classList.add("submit-button");
@@ -35,12 +35,12 @@ function startQuiz(){
     endQuizButton.classList.add("end-button");
     endQuizButton.classList.add("button");
     endQuizButton.innerHTML = "End Quiz";
-    endQuizButton.addEventListener("click",() => endQuiz())
+    endQuizButton.addEventListener("click",() => endQuiz());
 
     quizScreen.appendChild(questionBox);
     quizScreen.appendChild(answerBox);
-    quizScreen.appendChild(submitButton)
-    quizScreen.after(endQuizButton)
+    quizScreen.appendChild(submitButton);
+    quizScreen.after(endQuizButton);
 }
 
 
@@ -60,11 +60,11 @@ function appendQuestion(questionBox, answerBox){
 
         const option = document.createElement("label");
         option.htmlFor = selectButton.id;
-        option.innerHTML = optionText
+        option.innerHTML = optionText;
         
         optionBox.appendChild(selectButton);
         optionBox.appendChild(option);
-        answerBox.appendChild(optionBox)
+        answerBox.appendChild(optionBox);
       });
 }
 
@@ -73,12 +73,12 @@ function appendQuestion(questionBox, answerBox){
 function checkAnswer(questionBox, answerBox){
     const choice = document.querySelector(`input[name="option"]:checked`);
     if(choice == null){
-        alert("please choose one of the following options")
+        alert("please choose one of the following options");
     }else{
     const selectedAnswer = document.querySelector(`label[for="${choice.id}"]`).innerHTML;
     const correctAnswer = quizData[questionNumber].correct;
     if(selectedAnswer === correctAnswer){
-        score++
+        score++;
         nextQuestion(questionBox, answerBox);
     }else{
         nextQuestion(questionBox, answerBox);
@@ -95,7 +95,7 @@ function nextQuestion(questionBox, answerBox){
     
     questionNumber++;
 
-    appendQuestion(questionBox, answerBox)
+    appendQuestion(questionBox, answerBox);
     }else{
         endQuiz(questionBox, answerBox);
     }
@@ -123,7 +123,7 @@ function endQuiz(questionBox, answerBox){
     backButton.classList.add("button");
     backButton.innerHTML = "Back To Menu";
 
-    backButton.addEventListener("click",() => reset())
+    backButton.addEventListener("click",() => reset());
 
     quizScreen.appendChild(resultBox);
     quizScreen.appendChild(backButton);
@@ -144,6 +144,6 @@ function reset(){
     resultBox.remove();
 
     startButton.disabled = false;
-    questionNumber = 0
-    score = 0
+    questionNumber = 0;
+    score = 0;
 }
